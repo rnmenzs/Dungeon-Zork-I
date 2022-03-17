@@ -11,7 +11,6 @@ void way(int decision);
 void combatWay(int decision);
 void combat();
 void defaultCommandValidator();
-void combatCommandValidator(char text[]);
 
 int battle = 0;
 int lastRoom = -1;
@@ -109,7 +108,7 @@ void combat(){
 
         if(fighting != 0){
             getCombatCommand(comando);
-            combatCommandValidator(comando);
+            combatWay(combatCommand(comando));
         }
     } while ( fighting != 0);
 

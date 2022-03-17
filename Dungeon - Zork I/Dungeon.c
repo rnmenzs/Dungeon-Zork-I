@@ -17,11 +17,11 @@ int main(){
     jogador.hp = 2;
     jogador.moves = 0;
 
-    gets(jogador.name);
-
     char comando[50];
 
     system("cls");
+
+    gets(jogador.name);
 
     do{
         if(jogador.hp <= 0){
