@@ -5,52 +5,96 @@
 #include <ctype.h>
 #include "./headers/events.h"
 
-void statusBar();
+void initialBanner();
 
 extern int battle;
 
-int main(){
+int main()
+{
+
+    srand(time(NULL));
     setlocale(LC_ALL, "Portuguese");
 
     battle = 0;
     jogador.alive = 1;
-    jogador.hp = 2;
-    jogador.moves = 0;
+    jogador.hp = 20;
+    jogador.CA = 10;
 
     char comando[50];
 
     system("cls");
 
+    initialBanner();
+
+    system("pause");
+
+    printf("\nDigite seu nickname: ");
     gets(jogador.name);
 
-    do{
-        if(jogador.hp <= 0){
-            jogador.alive = 0;
+    while (jogador.alive == 1)
+    {
+        printf("\nDigite o comando: ");
+
+        if (battle == 1)
+        {
+            combat();
+            
         }
-        else{
-
-            if( battle == 1){
-                combat();
-                statusBar(jogador);
-            } else {
-                // aqui armazena o que foi digitado na variavel char
-                getCommand(comando);
-                defaultCommandValidator(comando);
-                statusBar(jogador);
-            }
+        else
+        {
+            getCommand(comando);
+            defaultCommandValidator(comando);
+            statusBar(jogador);
         }
+    }
 
-    } while ( jogador.alive != 0 || comando != 27);
-
-    if(jogador.alive == 0){
+    if (jogador.alive == 0)
+    {
         printf("\x1b[2;31;40m---------You Died----------\x1b[0m\n");
     }
 
     return 0;
 }
 
-void statusBar(player jogador){
-    printf("\x1b[2;30;47mHP: %i   Nome: ", jogador.hp); 
-    puts(jogador.name); 
-    printf("\x1b[0m\n");
+void initialBanner()
+{
+    char banner[] = "==========================================================\n"
+                    "=  ====  ====  =========  ================================\n"
+                    "=  ====  ====  =========  ================================\n"
+                    "=  ====  ====  =========  ================================\n"
+                    "=  ====  ====  ===   ===  ===   ====   ===  =  = ====   ==\n"
+                    "=   ==    ==  ===  =  ==  ==  =  ==     ==        ==  =  =\n"
+                    "==  ==    ==  ===     ==  ==  =====  =  ==  =  =  ==     =\n"
+                    "==  ==    ==  ===  =====  ==  =====  =  ==  =  =  ==  ====\n"
+                    "===    ==    ====  =  ==  ==  =  ==  =  ==  =  =  ==  =  =\n"
+                    "====  ====  ======   ===  ===   ====   ===  =  =  ===   ==\n"
+                    "==========================================================\n";
+    char banner2[] = "==========================================================\n"
+                     "=        ==============        ==  =======================\n"
+                     "====  ====================  =====  =======================\n"
+                     "====  ====================  =====  =======================\n"
+                     "====  ======   ===========  =====  ======   ==============\n"
+                     "====  =====     ==========  =====    ===  =  =============\n"
+                     "====  =====  =  ==========  =====  =  ==     =============\n"
+                     "====  =====  =  ==========  =====  =  ==  ================\n"
+                     "====  =====  =  ==========  =====  =  ==  =  =============\n"
+                     "====  ======   ===========  =====  =  ===   ==============\n"
+                     "==========================================================\n";
+    char banner3[] = "==========================================================\n"
+                     "=       ==================================================\n"
+                     "=  ====  =================================================\n"
+                     "=  ====  =================================================\n"
+                     "=  ====  ==  =  ==  = ====   ====   ====   ===  = ========\n"
+                     "=  ====  ==  =  ==     ==  =  ==  =  ==     ==     =======\n"
+                     "=  ====  ==  =  ==  =  ===    ==     ==  =  ==  =  =======\n"
+                     "=  ====  ==  =  ==  =  =====  ==  =====  =  ==  =  =======\n"
+                     "=  ====  ==  =  ==  =  ==  =  ==  =  ==  =  ==  =  =======\n"
+                     "=       ====    ==  =  ===   ====   ====   ===  =  =======\n"
+                     "==========================================================\n\n";
+    printf("%s", banner);
+    Sleep(1000);
+    printf("%s", banner2);
+    Sleep(1000);
+    printf("%s", banner3);
+    Sleep(1000);
 }

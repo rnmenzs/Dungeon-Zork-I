@@ -29,6 +29,7 @@ int defaultCommand(char text[]){
     if ( strcmp("esquerda", text) == 0){
         return 3;
     }
+    
     return -1;
 }
 

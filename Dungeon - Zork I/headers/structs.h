@@ -1,20 +1,25 @@
+
+
 typedef struct player {
     char name[50];
     int alive;
-    int moves;
+    struct attack{
+        int damage;
+    }ataque1, ataque2;
     int hp;
-    int attack1;
-    int attack2;
-    int attack3;
-    int attack4;
     int CA;
 }player;
 
 typedef struct enemy{
     int hp;
-    int damage;
+    struct attackEnemy{
+        char name [50];
+        char description[50];
+        int damage;
+    }ataque1, ataque2;
     int CA;
 }enemy;
+
 
 player jogador;
 enemy inimigo;
